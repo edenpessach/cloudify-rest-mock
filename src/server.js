@@ -26,7 +26,13 @@ app.use(function findFile(req, res, next) {
     logger.info('file is', file);
 
     if (!!file) {
-        res.send(JSON.parse(fs.readFileSync(file)));
+        var result = JSON.parse(fs.readFileSync(file));
+        if (result.error > 0) {
+            res.status(result.error).send(result.content);
+        } else {
+            res.send(result);
+        }
+
     } else {
         next();
     }

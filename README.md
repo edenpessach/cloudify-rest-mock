@@ -39,10 +39,29 @@ The proxy may have bugs - like any other code
 
 In this case we return a response with the error and stacktrace.
 
+# Error Response
+
+to send an error - simply place the error details in the file
+
+```
+{
+    "error" : 403,
+    "content" : {
+        "message" : "hello world"
+    }
+}
+```
+
+in this case `status` will be set to `403` and the response body will contain `{ 'message' : 'hello world' }` the rest is omitted.
+
+```
+res.status(result.error).send(result.content)
+```
+
 
 # Roadmap
 
- - support error responses
+ - ~~support error responses~~
  - support logic (.js) file extensions
 
 
